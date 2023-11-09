@@ -1,0 +1,29 @@
+default:
+all_set:
+  metrics:
+    brightness:
+      enabled: true
+    color_mode:
+      enabled: true
+    color_temperature:
+      enabled: true
+    hue:
+      enabled: true
+    saturation:
+      enabled: true
+    status:
+      enabled: true
+none_set:
+  metrics:
+    brightness:
+      enabled: false
+    color_mode:
+      enabled: false
+    color_temperature:
+      enabled: false
+    hue:
+      enabled: false
+    saturation:
+      enabled: false
+    status:
+      enabled: false

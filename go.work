@@ -1,0 +1,8 @@
+go 1.20
+
+toolchain go1.21.3
+
+use (
+	./collector // Generated collector
+	./pkg/receiver/nanoleafreceiver
+)

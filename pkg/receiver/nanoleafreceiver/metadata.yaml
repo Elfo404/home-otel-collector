@@ -1,0 +1,55 @@
+# Refer to https://raw.githubusercontent.com/open-telemetry/opentelemetry-collector-contrib/main/cmd/mdatagen/metadata-schema.yaml for the full schema
+type: nanoleafreceiver
+
+status:
+  class: receiver
+  stability:
+    development: [metrics]
+
+metrics:
+  brightness:
+    enabled: true
+    description: Brightness
+    unit: percentage
+    gauge:
+      value_type: double
+    attributes: []
+  status:
+    enabled: true
+    description: Status of the panel
+    extended_documentation: `0` when the panel is off, `1` when the panel is on.
+    unit: status
+    gauge:
+      value_type: int
+    attributes: []
+  saturation:
+    enabled: true
+    description: Color saturation
+    extended_documentation: only relevant when color mode is 0 (`HS`)
+    unit: percentage
+    gauge:
+      value_type: double
+    attributes: []
+  hue:
+    enabled: true
+    description: Hue
+    extended_documentation: degree on the HSC color wheel. Only relevant when color mode is 0 (`HS`)
+    unit: degrees
+    gauge:
+      value_type: double
+    attributes: []
+  color_temperature:
+    enabled: true
+    description: Color temperature. Only relevant when color mode is 1 (`CT`)
+    unit: kelvin
+    gauge:
+      value_type: int
+    attributes: []
+  color_mode:
+    enabled: true
+    description: Color mode.
+    extended_documentation: '`0`: HS (Hue-Saturation), `1`: CT (Color-Temperature), `2`: Effect'
+    unit: mode
+    gauge:
+      value_type: int
+    attributes: []

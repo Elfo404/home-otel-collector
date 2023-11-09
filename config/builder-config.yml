@@ -1,0 +1,27 @@
+dist:
+  name: home-otel-collector
+  description: Home OTel Collector
+  output_path: ./collector
+  otelcol_version: 0.88.0
+  version: 0.0.1
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.88.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.88.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusremotewriteexporter v0.88.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.88.0
+
+receivers:
+  - gomod: 'github.com/Elfo404/home-otel-collector/pkg/receiver/nanoleafreceiver v0.0.1'
+    import: 'github.com/Elfo404/home-otel-collector/pkg/receiver/nanoleafreceiver'
+    name: 'nanoleafreceiver'
+    path: './pkg/receiver/nanoleafreceiver'
+
+replaces:
+  - github.com/Elfo404/home-otel-collector/pkg/receiver/nanoleafreceiver => ../pkg/receiver/nanoleafreceiver
+
+# https://github.com/open-telemetry/opentelemetry-collector/issues/8127
+excludes:
+  - github.com/knadh/koanf v1.5.0

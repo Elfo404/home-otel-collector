@@ -1,0 +1,31 @@
+receivers:
+  nanoleafreceiver:
+    collection_interval: 1m
+    endpoint: http://<NANOLEAF_IP>:16021/api/v1
+    token: <TOKEN>
+
+exporters:
+  debug:
+    verbosity: detailed
+
+  prometheus:
+    endpoint: localhost:9091
+    metric_expiration: 5s
+    namespace: nanoleaf
+
+  prometheusremotewrite:
+    endpoint: 'http://localhost:9090/api/v1/write'
+    namespace: nanoleaf
+    resource_to_telemetry_conversion:
+      enabled: true
+
+service:
+  pipelines:
+    metrics:
+      receivers: [nanoleafreceiver]
+      processors: []
+      exporters: [prometheusremotewrite]
+
+  telemetry:
+    logs:
+      level: debug

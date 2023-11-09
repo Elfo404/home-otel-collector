@@ -1,0 +1,13 @@
+version: '3'
+services:
+  prometheus:
+    user: root # <-------- add this line --------
+    image: prom/prometheus:latest
+    ports:
+      - 9090:9090
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--web.enable-lifecycle'
+      - '--web.enable-remote-write-receiver'
+      - '--config.file=/etc/prometheus/prometheus.yml'
