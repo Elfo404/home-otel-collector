@@ -17,7 +17,7 @@ metrics:
   status:
     enabled: true
     description: Status of the panel
-    extended_documentation: `0` when the panel is off, `1` when the panel is on.
+    extended_documentation: '`0` when the panel is off, `1` when the panel is on.'
     unit: status
     gauge:
       value_type: int
@@ -36,7 +36,7 @@ metrics:
     extended_documentation: degree on the HSC color wheel. Only relevant when color mode is 0 (`HS`)
     unit: degrees
     gauge:
-      value_type: double
+      value_type: int
     attributes: []
   color_temperature:
     enabled: true

@@ -32,7 +32,7 @@ Color mode.
 
 ### color_temperature
 
-Color temperature.
+Color temperature. Only relevant when color mode is 1 (`CT`)
 
 | Unit | Metric Type | Value Type |
 | ---- | ----------- | ---------- |
@@ -42,15 +42,17 @@ Color temperature.
 
 Hue
 
-`0` when the panel is off, `1` when the panel is on.
+degree on the HSC color wheel. Only relevant when color mode is 0 (`HS`)
 
 | Unit | Metric Type | Value Type |
 | ---- | ----------- | ---------- |
-| degrees | Gauge | Double |
+| degrees | Gauge | Int |
 
 ### saturation
 
 Color saturation
+
+only relevant when color mode is 0 (`HS`)
 
 | Unit | Metric Type | Value Type |
 | ---- | ----------- | ---------- |

@@ -118,7 +118,7 @@ type metricColorTemperature struct {
 // init fills color_temperature metric with initial data.
 func (m *metricColorTemperature) init() {
 	m.data.SetName("color_temperature")
-	m.data.SetDescription("Color temperature.")
+	m.data.SetDescription("Color temperature. Only relevant when color mode is 1 (`CT`)")
 	m.data.SetUnit("kelvin")
 	m.data.SetEmptyGauge()
 }
@@ -172,14 +172,14 @@ func (m *metricHue) init() {
 	m.data.SetEmptyGauge()
 }
 
-func (m *metricHue) recordDataPoint(start pcommon.Timestamp, ts pcommon.Timestamp, val float64) {
+func (m *metricHue) recordDataPoint(start pcommon.Timestamp, ts pcommon.Timestamp, val int64) {
 	if !m.config.Enabled {
 		return
 	}
 	dp := m.data.Gauge().DataPoints().AppendEmpty()
 	dp.SetStartTimestamp(start)
 	dp.SetTimestamp(ts)
-	dp.SetDoubleValue(val)
+	dp.SetIntValue(val)
 }
 
 // updateCapacity saves max length of data point slices that will be used for the slice capacity.
@@ -441,7 +441,7 @@ func (mb *MetricsBuilder) RecordColorTemperatureDataPoint(ts pcommon.Timestamp, 
 }
 
 // RecordHueDataPoint adds a data point to hue metric.
-func (mb *MetricsBuilder) RecordHueDataPoint(ts pcommon.Timestamp, val float64) {
+func (mb *MetricsBuilder) RecordHueDataPoint(ts pcommon.Timestamp, val int64) {
 	mb.metricHue.recordDataPoint(mb.startTime, ts, val)
 }
 

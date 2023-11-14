@@ -91,7 +91,7 @@ func (r *nanoleafScraper) scrapeHue(now pcommon.Timestamp, errs *scrapererror.Sc
 		errs.Add(err)
 		return
 	}
-	r.mb.RecordHueDataPoint(now, float64(hue.Value))
+	r.mb.RecordHueDataPoint(now, int64(hue.Value))
 
 }
 

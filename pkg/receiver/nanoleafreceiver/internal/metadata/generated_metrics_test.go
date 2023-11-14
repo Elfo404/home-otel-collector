@@ -130,7 +130,7 @@ func TestMetricsBuilder(t *testing.T) {
 					validatedMetrics["color_temperature"] = true
 					assert.Equal(t, pmetric.MetricTypeGauge, ms.At(i).Type())
 					assert.Equal(t, 1, ms.At(i).Gauge().DataPoints().Len())
-					assert.Equal(t, "Color temperature.", ms.At(i).Description())
+					assert.Equal(t, "Color temperature. Only relevant when color mode is 1 (`CT`)", ms.At(i).Description())
 					assert.Equal(t, "kelvin", ms.At(i).Unit())
 					dp := ms.At(i).Gauge().DataPoints().At(0)
 					assert.Equal(t, start, dp.StartTimestamp())
@@ -147,8 +147,8 @@ func TestMetricsBuilder(t *testing.T) {
 					dp := ms.At(i).Gauge().DataPoints().At(0)
 					assert.Equal(t, start, dp.StartTimestamp())
 					assert.Equal(t, ts, dp.Timestamp())
-					assert.Equal(t, pmetric.NumberDataPointValueTypeDouble, dp.ValueType())
-					assert.Equal(t, float64(1), dp.DoubleValue())
+					assert.Equal(t, pmetric.NumberDataPointValueTypeInt, dp.ValueType())
+					assert.Equal(t, int64(1), dp.IntValue())
 				case "saturation":
 					assert.False(t, validatedMetrics["saturation"], "Found a duplicate in the metrics slice: saturation")
 					validatedMetrics["saturation"] = true
